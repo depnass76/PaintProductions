@@ -1,0 +1,8 @@
+{
+  "start": "ng serve --proxy-config proxy.conf.json",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.2"
+  }
+}

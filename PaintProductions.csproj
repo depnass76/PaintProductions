@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>PaintProductions</AssemblyName>
+	  <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\client\main.629f90dffb7d5d178792.js" />
+    <Content Remove="wwwroot\client\polyfills.254c57742aa831570d1b.js" />
+    <Content Remove="wwwroot\client\polyfills.js" />
+    <Content Remove="wwwroot\client\runtime.7d2e27576b419591df3b.js" />
+    <Content Remove="wwwroot\client\styles.31d6cfe0d16ae931b73c.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <None Include="wwwroot\client\main.629f90dffb7d5d178792.js" />
+	  <None Include="wwwroot\client\polyfills.254c57742aa831570d1b.js" />
+	  <None Include="wwwroot\client\runtime.7d2e27576b419591df3b.js" />
+	  <None Include="wwwroot\client\styles.31d6cfe0d16ae931b73c.css" />
+	  <None Include="wwwroot\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.16" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.3.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="client\src\app\services\store.service.ts" />
+  </ItemGroup>
+
+	<Target Name="MyPublishScripts" BeforeTargets="BeforePublish">
+		<Exec Command="npm install" />
+		<Exec Command="gulp" />
+		<Exec Command="npm install" WorkingDirectory=".\\client" />
+		<Exec Command="ng build --prod" WorkingDirectory=".\\client" />
+	</Target>
+
+</Project>
